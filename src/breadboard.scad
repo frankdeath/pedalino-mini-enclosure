@@ -12,7 +12,7 @@ m           = 0.9; // Tolerance (Panels/rails gap)
 /* BreadBoard Mount */
 BBMount   =  1;
 
-BBPosX    = 3;
+BBPosX    = 2;
 BBPosY    = 2;
 BBLength  = 82.5;
 BBHeight  =  9.5;
@@ -22,7 +22,7 @@ TabDepth  =  1.5;
 TabHeight =  5.8;
 
 module BBTabs() {
-    translate([Thick+2*m + 0.1, 2*Thick, Thick+0.2]) {
+    //translate([Thick+2*m + 0.1, 2*Thick, Thick+0.2]) {
         union() {
             %cube([BBLength, BBWidth, BBHeight]);
             translate([13, -TabDepth, 0]) {
@@ -56,7 +56,7 @@ module BBTabs() {
                 %cube([TabDepth*2, TabWidth, TabHeight]);
             }
         }
-    }
+    //}
 }
 
 if(BBMount==1) {
