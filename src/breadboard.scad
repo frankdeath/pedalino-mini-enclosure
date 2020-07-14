@@ -24,39 +24,45 @@ TabHeight =  5.8;
 module BBTabs() {
     //translate([Thick+2*m + 0.1, 2*Thick, Thick+0.2]) {
         union() {
-            %cube([BBLength, BBWidth, BBHeight]);
+            cube([BBLength, BBWidth, BBHeight]);
             translate([13, -TabDepth, 0]) {
-                %cube([TabWidth, TabDepth*2, TabHeight]);
+                cube([TabWidth, TabDepth*2, TabHeight]);
             }
             translate([BBLength-13, -TabDepth, 0]) {
-                %cube([TabWidth, TabDepth*2, TabHeight]);
+                cube([TabWidth, TabDepth*2, TabHeight]);
             }
             translate([13, BBWidth-TabDepth, 0]) {
-                %cube([TabWidth, TabDepth*2, TabHeight]);
+                cube([TabWidth, TabDepth*2, TabHeight]);
             }
             translate([BBLength-13, BBWidth-TabDepth, 0]) {
-                %cube([TabWidth, TabDepth*2, TabHeight]);
+                cube([TabWidth, TabDepth*2, TabHeight]);
             }
             translate([-TabDepth, 3, 0]) {
-                %cube([TabDepth*2, TabWidth, TabHeight]);
+                cube([TabDepth*2, TabWidth, TabHeight]);
             }
             translate([-TabDepth, BBWidth/2-TabWidth/2, 0]) {
-                %cube([TabDepth*2, TabWidth, TabHeight]);
+                cube([TabDepth*2, TabWidth, TabHeight]);
             }
             translate([-TabDepth, BBWidth-TabWidth-3, 0]) {
-                %cube([TabDepth*2, TabWidth, TabHeight]);
+                cube([TabDepth*2, TabWidth, TabHeight]);
             }
             translate([BBLength-TabDepth, 3, 0]) {
-                %cube([TabDepth*2, TabWidth, TabHeight]);
+                cube([TabDepth*2, TabWidth, TabHeight]);
             }
             translate([BBLength-TabDepth, BBWidth/2-TabWidth/2, 0]) {
-                %cube([TabDepth*2, TabWidth, TabHeight]);
+                cube([TabDepth*2, TabWidth, TabHeight]);
             }
             translate([BBLength-TabDepth, BBWidth-TabWidth-3, 0]) {
-                %cube([TabDepth*2, TabWidth, TabHeight]);
+                cube([TabDepth*2, TabWidth, TabHeight]);
             }
         }
     //}
+}
+
+module BB() {
+    translate([BBPosX, BBPosY, 0]) {
+        BBTabs();
+    }
 }
 
 if(BBMount==1) {
