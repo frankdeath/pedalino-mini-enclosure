@@ -20,9 +20,11 @@ TabDepth  =  1.5;
 TabHeight =  4.6;
 
 XNearTabEdgeDist = 11.4;
-XFarTabEdgeDist = 11.4;
+XFarTabEdgeDist = 11.7;
 YNearTabEdgeDist = 2.2;
 YFarTabEdgeDist = 2.2;
+
+// NOTE: it would be better to use the real tab width + a tolerance, rather than making the tab with wider so that the board fits in the tray
 
 BBPosX    = TabDepth; // originally 2
 BBPosY    = TabDepth; // originally 2
