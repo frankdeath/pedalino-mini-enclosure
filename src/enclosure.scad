@@ -39,7 +39,7 @@ difference() {
     translate([jack_spacing-JackD/2,0,0]) {jackHole(th);}
     translate([jack_spacing*2,0,0]) {jackHole(th);}
     translate([jack_spacing*3+JackD/2,0,0]) {jackHole(th);}
-    translate([0,BBWidth/2+th-bb_pin_spacing,15]) {
+    translate([0,BBWidth/2+th-bb_pin_spacing,15+th]) {
         scale([1.0,1.0,0.5]) {
              powerHole(th);
         }
