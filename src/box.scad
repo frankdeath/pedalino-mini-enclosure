@@ -7,14 +7,16 @@
 // V 1.2 Correction / hint from molotok3D, some minor fixes
 // V 1.1- added opening helper and an optional separating wall
 
-wi=60;	// inner width, length & heigth
-li=85;
-h=28;
+
+// Inner width, length, & height
+wi=106;	// x
+li=85;  // y
+h=40;   // z
 th=2;	// wall thickness
-r=3;	// radius of rounded corners
-opening_help=false;	// make a gap to ease opening of the cover, f.ex.
+r=1;	// radius of rounded corners
+opening_help=true;	// make a gap to ease opening of the cover, f.ex.
 		// with a coin - girls are afraid of their finger nails ;-)
-separator=13;	// generate a separating wall inside - set to 0 for none
+separator=0;	// generate a separating wall inside - set to 0 for none
 
 e=0.01;
 ri=(r>th)?r-th:e;	// needed for the cover - needs to be larger than 0 for proper results
@@ -80,6 +82,6 @@ module cover(){
 
 }
 
-box();
-translate([0,li+3+2*th,0])
-	cover();
+//box();
+//translate([0,li+3+2*th,0])
+//	cover();
