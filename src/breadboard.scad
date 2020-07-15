@@ -17,7 +17,7 @@ BBPosY    = 2;
 BBLength  = 82.5;
 BBHeight  =  9.5;
 BBWidth   = 54.5;
-TabWidth  =  3.9; // These tabs tend to vary from one brand to another. Measure carefully!
+TabWidth  =  4.9; // These tabs tend to vary from one brand to another. Measure carefully!
 TabDepth  =  1.5;
 TabHeight =  4.6;
 
@@ -30,7 +30,7 @@ module BBTabs() {
                 cube([TabWidth, TabDepth*2, TabHeight]);
             }
             // x-axis (near): far tab
-            translate([BBLength-TabWidth-13, -TabDepth, 0]) {
+            translate([BBLength-TabWidth/2-14, -TabDepth, 0]) {
                 cube([TabWidth, TabDepth*2, TabHeight]);
             }
             // x-axis (far): near tab
@@ -38,7 +38,7 @@ module BBTabs() {
                 cube([TabWidth, TabDepth*2, TabHeight]);
             }
             // x-axis (far): far tab
-            translate([BBLength-TabWidth-13, BBWidth-TabDepth, 0]) {
+            translate([BBLength-TabWidth/2-14, BBWidth-TabDepth, 0]) {
                 cube([TabWidth, TabDepth*2, TabHeight]);
             }
             // y-axis (near): near tab

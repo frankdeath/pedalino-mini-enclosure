@@ -10,5 +10,13 @@ module BBTray() {
         }
     }
 
-BBTray();
-    
+//BBTray();
+
+module BBTrayTest() {
+    difference() {
+        cube([BBLength+TabDepth*2, BBWidth+TabDepth*2, TabHeight/2+Thick/2]);
+        translate([-TabDepth/3,-TabDepth/3,Thick/2]) {BB();}
+        }
+    }
+
+BBTrayTest();
