@@ -19,10 +19,10 @@ TabWidth  =  4.9; // These tabs tend to vary from one brand to another. Measure 
 TabDepth  =  1.5;
 TabHeight =  4.6;
 
-XNearTabEdgeDist = 12.0;
-XFarTabEdgeDist = 12.0;
-YNearTabEdgeDist = 2.7;
-YFarTabEdgeDist = 2.7;
+XNearTabEdgeDist = 11.4;
+XFarTabEdgeDist = 11.4;
+YNearTabEdgeDist = 2.2;
+YFarTabEdgeDist = 2.2;
 
 BBPosX    = TabDepth; // originally 2
 BBPosY    = TabDepth; // originally 2
