@@ -5,11 +5,11 @@
 
 tollerance = .5;
 
-baseplate_width = 100;
-baseplate_height = 60;
+//baseplate_width = 100;
+//baseplate_height = 60;
 baseplate_thickness = 4;
-baseplate_oled_plate_offset_x = 10;
-baseplate_oled_plate_offset_y = 10;
+baseplate_oled_plate_offset_x = 0;
+baseplate_oled_plate_offset_y = 0;
 
 // OLED PCB
 oled_tollerance = 0.3;
@@ -37,8 +37,10 @@ oled_display_active_offset_bottom = oled_pcb_height - 8 - oled_display_active_he
 oled_chamfer = 3;
 
 // OLED PLate
-oled_plate_height = 40-2;
-oled_plate_width = 50+7;
+oled_plate_edge_width = 4;
+oled_plate_edge_height = 2;
+oled_plate_height = oled_pcb_height + oled_plate_edge_height * 2;
+oled_plate_width = oled_pcb_width + oled_plate_edge_width * 2;
 oled_plate_depth = 6;
 oled_plate_knob_dia = 24;
 oled_plate_rotary_dia = 8;
@@ -54,10 +56,10 @@ module oled_plate(plate_cutout = false) {
     if (plate_cutout == false) {
         difference() {
             hull() {
-                roundedcube(oled_plate_width,oled_plate_height,oled_plate_depth, 3);
+                roundedcube(oled_plate_width,oled_plate_height,oled_plate_depth, 0.1);
             }
         // !!! oled_cutout() is the important function
-        translate([10,(40 - oled_pcb_width) / 2,(oled_plate_depth - oled_cutout_total_height + extra )]) oled_cutout();
+        translate([oled_plate_edge_width,oled_plate_edge_height,(oled_plate_depth - oled_cutout_total_height + extra )]) oled_cutout();
         }
     } else {
     translate([10 + (oled_pcb_width / 2) - 10 ,31,-baseplate_thickness]) cube([20,5,baseplate_thickness]); // OLED connector
@@ -106,4 +108,4 @@ translate([xdim-rdim,ydim-rdim,0])cylinder(h=zdim,r=rdim);
 }
 
 // Draw the oled plate
-translate([baseplate_oled_plate_offset_x,baseplate_oled_plate_offset_y,baseplate_thickness]) oled_plate(plate_cutout = false);
+translate([baseplate_oled_plate_offset_x,baseplate_oled_plate_offset_y,0]) oled_plate(plate_cutout = false);
