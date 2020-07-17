@@ -42,8 +42,6 @@ oled_plate_width = 50+7;
 oled_plate_depth = 6;
 oled_plate_knob_dia = 24;
 oled_plate_rotary_dia = 8;
-oled_plate_screw_dia = 3;
-oled_plate_screw_depth = 3;
 
 pcb_holder_walls = 1.5;
 
@@ -60,19 +58,8 @@ module oled_plate(plate_cutout = false) {
             }
         // !!! oled_cutout() is the important function
         translate([10,(40 - oled_pcb_width) / 2,(oled_plate_depth - oled_cutout_total_height + extra )]) oled_cutout();
-        translate([5,5,0]) cylinder(h = oled_plate_screw_depth, d = oled_plate_screw_dia);
-        translate([5,35,0]) cylinder(h = oled_plate_screw_depth, d = oled_plate_screw_dia);
-        translate([52,35,0]) cylinder(h = oled_plate_screw_depth, d = oled_plate_screw_dia);
-        translate([52,5,0]) cylinder(h = oled_plate_screw_depth, d = oled_plate_screw_dia);
-    }
-        translate([5,5,-baseplate_thickness]) mounting_hole();
-        translate([5,35,-baseplate_thickness]) mounting_hole();
-        translate([52,35,-baseplate_thickness]) mounting_hole();
-        translate([52,5,-baseplate_thickness]) mounting_hole();
-        
-    }        
-    if (plate_cutout == true) {
-    translate([70,15,-baseplate_thickness]) cylinder(h = baseplate_thickness, d = oled_plate_rotary_dia, center=false); // For ratary knob
+        }
+    } else {
     translate([10 + (oled_pcb_width / 2) - 10 ,31,-baseplate_thickness]) cube([20,5,baseplate_thickness]); // OLED connector
     }
 }
