@@ -3,7 +3,7 @@
  * from: https://www.thingiverse.com/thing:4134190
  */
 
-tollerance = .5;
+tolerance = .5;
 
 //baseplate_width = 100;
 //baseplate_height = 60;
@@ -12,27 +12,27 @@ baseplate_oled_plate_offset_x = 0;
 baseplate_oled_plate_offset_y = 0;
 
 // OLED PCB
-oled_tollerance = 0.3;
-oled_pcb_height = 33.7 + oled_tollerance; 
-oled_pcb_width = 35.9 + oled_tollerance; // 35.5 according to spec
+oled_tolerance = 0.3;
+oled_pcb_height = 33.7 + oled_tolerance; 
+oled_pcb_width = 35.9 + oled_tolerance; // 35.5 according to spec
 
-oled_pcb_hole_dia = 2.1 + oled_tollerance;
+oled_pcb_hole_dia = 2.1 + oled_tolerance;
 
 oled_pcb_hole_dist_x = 30.7; // 30.4 spec
 oled_pcb_hole_dist_y = 28.7; // 28.5
-oled_pcb_hole_offset_bottom = 2 + (oled_tollerance / 2); // bottom is different somehow
-//oled_pcb_hole_offset_left = 3 + (oled_tollerance/2);
+oled_pcb_hole_offset_bottom = 2 + (oled_tolerance / 2); // bottom is different somehow
+//oled_pcb_hole_offset_left = 3 + (oled_tolerance/2);
 
-oled_pcb_hole_offset_left = (oled_pcb_width - oled_pcb_hole_dist_x) / 2; // 3 + (oled_tollerance/2); <-- new
+oled_pcb_hole_offset_left = (oled_pcb_width - oled_pcb_hole_dist_x) / 2; // 3 + (oled_tolerance/2); <-- new
 
 // Display area
-oled_display_height = 24 + oled_tollerance; // 23 accordong to spec
-oled_display_width = 35.4 + oled_tollerance;
-oled_display_thick = 2.2 + oled_tollerance;
+oled_display_height = 24 + oled_tolerance; // 23 accordong to spec
+oled_display_width = 35.4 + oled_tolerance;
+oled_display_thick = 2.2 + oled_tolerance;
 oled_display_offset_bottom = (oled_pcb_height - oled_display_height) - 6; // 5.25 according to spec
 // Active area
-oled_display_active_width = 29.42 + oled_tollerance;
-oled_display_active_height = 14.7 + oled_tollerance;
+oled_display_active_width = 29.42 + oled_tolerance;
+oled_display_active_height = 14.7 + oled_tolerance;
 oled_display_active_offset_bottom = oled_pcb_height - 8 - oled_display_active_height; // 7.35 to original spec
 oled_chamfer = 3;
 
@@ -51,7 +51,7 @@ oled_plate_rotary_dia = 8;
 
 pcb_holder_walls = 1.5;
 
-oled_pcb_thick = oled_plate_depth; //10 + oled_tollerance; // 10 for cleant cutour
+oled_pcb_thick = oled_plate_depth; //10 + oled_tolerance; // 10 for cleant cutour
 oled_cutout_total_height = oled_pcb_thick + oled_display_thick + pcb_holder_walls;
 
 extra = 0.00001;
