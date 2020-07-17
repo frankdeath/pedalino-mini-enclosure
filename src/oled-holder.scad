@@ -104,5 +104,59 @@ translate([xdim-rdim,ydim-rdim,0])cylinder(h=zdim,r=rdim);
 }
 }
 
+wall = oled_cover_height;
+bX = oled_plate_width;
+bY = oled_plate_height;
+lip = oled_cover_height;
+
+module oled_top() {
+    translate([oled_plate_width/2,oled_plate_height/2-wall,-oled_cover_height]){
+        rotate([0,180,0]) {
+            difference() {
+                // mostly center the cube so that the lid can be cut
+                translate([-oled_plate_width/2,-oled_plate_height/2+wall,-oled_cover_height]) {
+                    cube([oled_plate_width,oled_plate_height,oled_cover_height]);    
+               }
+               cutLid(0, 1.5);
+            }
+        }
+    }
+}
+
+module cutLid(shorten, catch) {
+  //Create a trapezoid lid 
+  // NOTE: This function expects the box to be centered at the origin
+
+  insideLip=wall*1.2; //lip inside the box for the lid to rest upon
+  lX=bX-(2*wall)+insideLip;
+  lY=bY-shorten;
+
+  echo("inside lip=", insideLip/2);
+
+  //polygon points
+  p0=[0, 0];
+  p1=[lX, 0];
+  p2=[lX-lip, wall];
+  p3=[lip, wall];
+
+  // this needs to be less than 45 deg to be usable
+  echo("Lip Overhang (degrees)=", atan(lip/wall));
+  
+  difference() {
+    rotate([90,0,0])
+      translate([-lX/2, -wall, 0]) 
+      linear_extrude(height=lY, center=true) polygon([p0, p1, p2, p3], paths=[[0,1,2,3]]);
+    if (catch==1) {
+      translate([0, lY/2-wall/2, -wall+catch/2]) cube([lX*.8, catch*1.5, catch*1.3], center=true);
+      //Add an additional slot to make it easier to slide open the lid
+      translate([0, -lY/2+wall, wall/3]) cube([lX*.6, catch*1.5, catch*5], center=true);
+    } else {
+      echo("catch=false");
+    }
+  }
+}
+
 // Draw the oled plate
 translate([baseplate_oled_plate_offset_x,baseplate_oled_plate_offset_y,0]) oled_plate(plate_cutout = false);
+// Draw the oled top
+oled_top();
