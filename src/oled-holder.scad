@@ -3,6 +3,8 @@
  * from: https://www.thingiverse.com/thing:4134190
  */
 
+include <SnapLib.0.36.scad>
+
 tollerance = .5;
 
 //baseplate_width = 100;
@@ -37,7 +39,11 @@ oled_display_active_offset_bottom = oled_pcb_height - 8 - oled_display_active_he
 oled_chamfer = 3;
 
 // OLED PLate
-oled_plate_edge_width = 4;
+oled_cover_height = 2;
+oled_cover_clip_overhang = 2;
+oled_cover_clip_width = 5;
+oled_cover_clip_angle = 45;
+oled_plate_edge_width = 2;
 oled_plate_edge_height = 2;
 oled_plate_height = oled_pcb_height + oled_plate_edge_height * 2;
 oled_plate_width = oled_pcb_width + oled_plate_edge_width * 2;
@@ -107,5 +113,26 @@ translate([xdim-rdim,ydim-rdim,0])cylinder(h=zdim,r=rdim);
 }
 }
 
+module oled_cover_clip(width) {
+    /*
+    YSnap(
+    l = inner height of the clip
+    h = depth of the base of the clip
+    a = angle of the top of the clip
+    b = width of the clip
+    */
+    rotate([0,90,0]) {
+        translate([0,0,-width/2]) {
+            SnapY(l=oled_plate_depth+oled_cover_height,h=oled_cover_clip_overhang,a=oled_cover_clip_angle,b=width);
+        }
+    }
+}
+
 // Draw the oled plate
 translate([baseplate_oled_plate_offset_x,baseplate_oled_plate_offset_y,0]) oled_plate(plate_cutout = false);
+// Add the clips
+translate([0,oled_plate_height*1/5,oled_plate_depth]) { rotate([0,0,-90]) {oled_cover_clip(oled_cover_clip_width);}}
+translate([0,oled_plate_height*4/5,oled_plate_depth]) { rotate([0,0,-90]) {oled_cover_clip(oled_cover_clip_width);}}
+translate([oled_plate_width,oled_plate_height*1/5,oled_plate_depth]) { rotate([0,0,90]) {oled_cover_clip(oled_cover_clip_width);}}
+translate([oled_plate_width,oled_plate_height*4/5,oled_plate_depth]) { rotate([0,0,90]) {oled_cover_clip(oled_cover_clip_width);}}
+translate([oled_plate_width/2,oled_plate_height,oled_plate_depth]) { rotate([0,0,180]) {oled_cover_clip(oled_cover_clip_width*2);}}
