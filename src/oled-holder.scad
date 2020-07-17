@@ -94,13 +94,6 @@ module oled_cutout() {
     
 }
 
-module mounting_hole() {
-    difference() {
-        cylinder(d = 5, h = baseplate_thickness);
-        cylinder(d = 3, h = baseplate_thickness);
-    }
-}
-
 module roundedcube(xdim ,ydim ,zdim,rdim){
 hull(){
 translate([rdim,rdim,0])cylinder(h=zdim,r=rdim);
