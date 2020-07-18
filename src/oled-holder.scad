@@ -3,6 +3,9 @@
  * from: https://www.thingiverse.com/thing:4134190
  */
 
+drawLid = false;
+drawHolder = true;
+
 tolerance = .5;
 
 //baseplate_width = 100;
@@ -155,15 +158,22 @@ module cutLid(shorten, catch) {
   }
 }
 
-// Draw the oled plate
-translate([baseplate_oled_plate_offset_x,baseplate_oled_plate_offset_y,0]) oled_plate(plate_cutout = false);
-// Draw the oled top
-oled_top();
-
-
 module lid() {
   //draw the lid (wall, 1) - second paramater specifies to add a hole for a catch
   rotate([0, 0, 0]) scale([snug-.01, snug-.02, 1.0]) cutLid(wall, 1);
 }
 
-//translate([-oled_plate_width/2,oled_plate_height/2,0]) {lid();}
+if (drawHolder) {
+    translate([oled_plate_width,0,oled_plate_depth]){
+        rotate([0,180,0]) {
+            // Draw the oled plate
+            translate([baseplate_oled_plate_offset_x,baseplate_oled_plate_offset_y,0]) oled_plate(plate_cutout = false);
+            // Draw the oled top
+            oled_top();
+        }
+    }
+}
+
+if (drawLid) {
+    translate([-oled_plate_width/2,oled_plate_height/2,0]) {lid();}
+}
