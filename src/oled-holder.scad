@@ -117,7 +117,7 @@ module oled_top() {
                 translate([-oled_plate_width/2,-oled_plate_height/2+wall,-oled_cover_height]) {
                     cube([oled_plate_width,oled_plate_height,oled_cover_height]);    
                }
-               cutLid(0, 1.5);
+               cutLid(0, true);
             }
         }
     }
