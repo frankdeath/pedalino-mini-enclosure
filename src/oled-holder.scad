@@ -104,7 +104,9 @@ translate([xdim-rdim,ydim-rdim,0])cylinder(h=zdim,r=rdim);
 wall = 2;
 bX = oled_plate_width;
 bY = oled_plate_height;
+bZ = oled_plate_depth;
 lip = 2;
+snug=0.99;
 
 module oled_top() {
     translate([oled_plate_width/2,oled_plate_height/2-wall,-oled_cover_height]){
@@ -114,7 +116,7 @@ module oled_top() {
                 translate([-oled_plate_width/2,-oled_plate_height/2+wall,-oled_cover_height]) {
                     cube([oled_plate_width,oled_plate_height,oled_cover_height]);    
                }
-               cutLid(0, true);
+               cutLid(wall, true);
             }
         }
     }
@@ -157,3 +159,11 @@ module cutLid(shorten, catch) {
 translate([baseplate_oled_plate_offset_x,baseplate_oled_plate_offset_y,0]) oled_plate(plate_cutout = false);
 // Draw the oled top
 oled_top();
+
+
+module lid() {
+  //draw the lid (wall, 1) - second paramater specifies to add a hole for a catch
+  rotate([0, 0, 0]) scale([snug-.01, snug-.02, 1.0]) cutLid(wall, 1);
+}
+
+//translate([-oled_plate_width/2,oled_plate_height/2,0]) {lid();}
