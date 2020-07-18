@@ -158,12 +158,22 @@ module cutLid(shorten, catch) {
   }
 }
 
+
+lid_cutout_width = 11.5;
+lid_cutout_height = 4.0;
+
 module lid() {
-  //draw the lid (wall, 1) - second paramater specifies to add a hole for a catch
-  rotate([0, 0, 0]) scale([snug-.01, snug-.02, 1.0]) cutLid(wall, 1);
+  difference() {
+    //draw the lid (wall, 1) - second paramater specifies to add a hole for a catch
+    rotate([0, 0, 0]) scale([snug-.01, snug-.02, 1.0]) cutLid(wall, 1);
+    // hole for pins -- don't understand why the extra -0.5 is necessary
+    translate([-lid_cutout_width/2,-bY/2+(lid_cutout_height/2)-0.5,-bZ]) {cube([lid_cutout_width,lid_cutout_height,bZ]);}
+  }
 }
 
-if (drawHolder) {
+
+
+module oled_holder() {
     translate([oled_plate_width,0,oled_plate_depth]){
         rotate([0,180,0]) {
             // Draw the oled plate
@@ -174,6 +184,11 @@ if (drawHolder) {
     }
 }
 
+if (drawHolder) {
+   oled_holder();   
+}
+
 if (drawLid) {
     translate([-oled_plate_width/2,oled_plate_height/2,0]) {lid();}
+    //lid();
 }
