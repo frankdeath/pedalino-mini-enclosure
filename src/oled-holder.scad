@@ -38,11 +38,8 @@ oled_chamfer = 3;
 
 // OLED PLate
 oled_cover_height = 2;
-oled_cover_clip_overhang = 2;
-oled_cover_clip_width = 5;
-oled_cover_clip_angle = 45;
-oled_plate_edge_width = 2;
-oled_plate_edge_height = 2;
+oled_plate_edge_width = 2*1.5;
+oled_plate_edge_height = 2*1.5;
 oled_plate_height = oled_pcb_height + oled_plate_edge_height * 2;
 oled_plate_width = oled_pcb_width + oled_plate_edge_width * 2;
 oled_plate_depth = 6;
@@ -104,10 +101,10 @@ translate([xdim-rdim,ydim-rdim,0])cylinder(h=zdim,r=rdim);
 }
 }
 
-wall = oled_cover_height;
+wall = 2;
 bX = oled_plate_width;
 bY = oled_plate_height;
-lip = oled_cover_height;
+lip = 2;
 
 module oled_top() {
     translate([oled_plate_width/2,oled_plate_height/2-wall,-oled_cover_height]){
